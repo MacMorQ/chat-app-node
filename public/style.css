@@ -1,0 +1,51 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-image: url("https://cdn.uc.assets.prezly.com/80aa73f9-7ea3-4c25-8e65-54c341725e3e/Back.jpg");
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+color: white;
+}
+
+.container {
+max-width: 600px;
+margin: 80px auto;
+background-color: rgba(0, 0, 0, 0.7);
+padding: 30px;
+border-radius: 10px;
+}
+
+input, button {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+border: none;
+border-radius: 5px;
+}
+
+button {
+background-color: #00c3ff;
+color: white;
+cursor: pointer;
+font-weight: bold;
+}
+
+h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+a {
+color: #00ffff;
+}
+
+#messages {
+max-height: 300px;
+overflow-y: auto;
+background-color: white;
+color: black;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+}

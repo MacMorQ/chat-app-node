@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Panel Administrativo</h2>
+    <p>Bienvenido Admin | <a href="/logout">Salir</a></p>
+    <p>Estado del chat: <span id="estado">Activo</span></p>
+    <button onclick="toggleChat()">Pausar / Activar Chat</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.emit('getChatStatus');
+
+    socket.on('chatStatus', (enabled) => {
+      document.getElementById('estado').innerText = enabled ? 'Activo' : 'Pausado';
+    });
+
+    function toggleChat() {
+      socket.emit('toggleChat');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Chat Grupal</h2>
+    <p>Bienvenido <%= user.name %> | <a href="/logout">Salir</a></p>
+    <div id="messages"></div>
+    <input id="msg" placeholder="Escribe tu mensaje..." />
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const username = "<%= user.name %>";
+    let chatEnabled = true;
+
+    socket.on('message', (msg) => {
+      const div = document.createElement('div');
+      div.textContent = msg;
+      document.getElementById('messages').appendChild(div);
+    });
+
+    socket.on('chatStatus', (enabled) => {
+      chatEnabled = enabled;
+    });
+
+    function sendMessage() {
+      if (!chatEnabled) {
+        alert('El chat está pausado');
+        return;
+      }
+      const msg = document.getElementById('msg').value;
+      socket.emit('message', username + ": " + msg);
+      document.getElementById('msg').value = "";
+    }
+  </script>
+</body>
+</html>
